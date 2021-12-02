@@ -1,18 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonobehaviourSingleton<GameManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public int level = 1; 
+    public void BeatLevel()
     {
-        
+        level++;
+    }
+    public int GetLevel()
+    {
+        return level;
     }
 
-    // Update is called once per frame
-    void Update()
+    public int score = 0;
+    public void IncreaseScore(int increase)
     {
-        
+        score += increase;
+    }
+    public int GetScore()
+    {
+        return score;
     }
 }
