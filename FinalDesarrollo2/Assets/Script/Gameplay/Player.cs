@@ -76,6 +76,12 @@ public class Player : MonoBehaviour
 
     private bool speedLowered;
 
+    public void ResetTarget()
+    {
+        target = transform.position;
+        isMoving = false;
+    }
+
     public void LowerSpeed()
     {
         movementSpeed /= 2;
