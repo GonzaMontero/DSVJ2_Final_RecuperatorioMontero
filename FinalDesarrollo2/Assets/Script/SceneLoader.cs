@@ -12,18 +12,7 @@ public class SceneLoader : MonobehaviourSingleton<SceneLoader>
 
     public void StartLevel()
     {
-        switch (gm.level)
-        {
-            case 1:
-                SceneManager.LoadScene("Level 1");
-                break;
-            case 2:
-                SceneManager.LoadScene("Level 2");
-                break;
-            case 3:
-                SceneManager.LoadScene("Level 3");
-                break;
-        }
+        SceneManager.LoadScene("Loading Bar");
     }
 
     public void GoToMenu()
