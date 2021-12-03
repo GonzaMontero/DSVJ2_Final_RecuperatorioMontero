@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: Enemy Post Process
+  m_Name: Enemy 2 Post Process
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 4967542785326213198}
---- !u!114 &4967542785326213198
+  - {fileID: 2813025369229247027}
+--- !u!114 &2813025369229247027
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,10 +32,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 8
+    value: 3
   threshold:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 1
   softKnee:
     overrideState: 0
     value: 0.5
@@ -50,7 +50,7 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0.9811321, g: 0, b: 0, a: 1}
+    value: {r: 0.050915398, g: 0.01183696, b: 0.3584906, a: 1}
   fastMode:
     overrideState: 0
     value: 0
