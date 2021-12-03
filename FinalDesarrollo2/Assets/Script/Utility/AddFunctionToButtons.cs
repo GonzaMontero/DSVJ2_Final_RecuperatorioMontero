@@ -10,34 +10,30 @@ public class AddFunctionToButtons : MonoBehaviour
     [SerializeField] Button exitGameButton;
     [SerializeField] Button restartButton;
 
-    SceneLoader sm;
-
-    void Start()
+    void OnEnable()
     {
-        sm = SceneLoader.Get();
         if (playButton != null)
         {
-            playButton.onClick.AddListener(delegate { sm.StartLevel(); });
+            playButton.onClick.AddListener(delegate { SceneLoader.StartLevel(); });
         }
         if (creditsButton != null)
         {
-            creditsButton.onClick.AddListener(delegate { sm.GoToCredits(); });
+            creditsButton.onClick.AddListener(delegate { SceneLoader.GoToCredits(); });
         }
         if (goToMenuButton != null)
         {
-            goToMenuButton.onClick.AddListener(delegate { sm.GoToMenu(); });
+            goToMenuButton.onClick.AddListener(delegate { SceneLoader.GoToMenu(); });
         }
         if (exitGameButton != null)
         {
-            exitGameButton.onClick.AddListener(delegate { sm.EndApplication(); });
+            exitGameButton.onClick.AddListener(delegate { SceneLoader.EndApplication(); });
         }
         if (restartButton != null)
         {
             GameManager gm = GameManager.Get();
             gm.ResetLives();
             gm.level = 1;
-            restartButton.onClick.AddListener(delegate { sm.StartLevel(); });
+            restartButton.onClick.AddListener(delegate { SceneLoader.StartLevel(); });
         }
-        this.GetComponent<AddFunctionToButtons>().enabled = false;
     }
 }

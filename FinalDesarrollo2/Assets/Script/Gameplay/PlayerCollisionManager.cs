@@ -8,13 +8,11 @@ public class PlayerCollisionManager : MonoBehaviour
 
     private Vector3 startPos;
     private GameManager gm;
-    private SceneLoader loader;
     private GameObject UIController;
 
     private void Start()
     {
         gm = GameManager.Get();
-        loader = SceneLoader.Get();
         UIController = GameObject.FindGameObjectWithTag("UI");
         startPos = transform.position;
         Time.timeScale = 1;
