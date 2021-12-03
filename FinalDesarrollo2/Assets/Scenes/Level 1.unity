@@ -3573,6 +3573,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927828681642138833, guid: 83f339161a8bb97498ed21b92ee8c93c,
         type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927828681642138833, guid: 83f339161a8bb97498ed21b92ee8c93c,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3621,6 +3626,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4037282238564838367, guid: 83f339161a8bb97498ed21b92ee8c93c,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037282238564838367, guid: 83f339161a8bb97498ed21b92ee8c93c,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4284063842585155179, guid: 83f339161a8bb97498ed21b92ee8c93c,
         type: 3}
       propertyPath: winUI
@@ -3631,6 +3646,11 @@ PrefabInstance:
       propertyPath: loseUI
       value: 
       objectReference: {fileID: 1814339061}
+    - target: {fileID: 7197400830908687637, guid: 83f339161a8bb97498ed21b92ee8c93c,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83f339161a8bb97498ed21b92ee8c93c, type: 3}
 --- !u!4 &8821358559289186664 stripped
