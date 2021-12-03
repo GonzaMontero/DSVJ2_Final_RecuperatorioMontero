@@ -9,6 +9,7 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] GameObject loadScene;
     [SerializeField] GameObject levelText;
     [SerializeField] GameObject loadCompleteText;
+    [SerializeField] GameObject secretText;
     [SerializeField] float speed;
 
     GameManager gm;
@@ -23,6 +24,11 @@ public class LevelLoader : MonoBehaviour
         text = levelText.GetComponent<TextMeshProUGUI>();
 
         operation = 0;
+        if (gm.level > 3)
+        {
+            gm.level = 1;
+            secretText.SetActive(true);
+        }
         text.text = "Level: " + gm.level.ToString();
         switch (gm.level)
         {

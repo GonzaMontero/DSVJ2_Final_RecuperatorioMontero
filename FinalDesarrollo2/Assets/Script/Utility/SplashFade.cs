@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class SplashFade : MonoBehaviour
@@ -16,7 +16,7 @@ public class SplashFade : MonoBehaviour
 
         FadeOut();
         yield return new WaitForSeconds(2.5f);
-        SceneLoader.GoToMenu();
+        SceneManager.LoadScene("LoadScene2");
     }
 
     void FadeIn()
