@@ -15,13 +15,19 @@ public class UpdateUI : MonoBehaviour
         timePassed = 0;
         gm = GameManager.Get();
 
-        livesText.text = "Lives: ";
-        //scoreText.text = "Score: " + gm.score;
+        livesText.text = "Lives: " + gm.lives.ToString();
+        scoreText.text = "Score: " + gm.score.ToString();
     }
 
     void Update()
     {
         timePassed += Time.deltaTime;
         timeText.text = "Time: " + timePassed.ToString("F2"); 
+    }
+
+    public void ReUpdateUI()
+    {
+        livesText.text = "Lives: " + gm.lives.ToString();
+        scoreText.text = "Score: " + gm.score.ToString();
     }
 }

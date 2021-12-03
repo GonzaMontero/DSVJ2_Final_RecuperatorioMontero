@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Manager
-  - Neonable
+  - Enemy
+  - End Of Level
+  - UI
   layers:
   - Default
   - TransparentFX

@@ -21,4 +21,14 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     {
         return score;
     }
+
+    public int lives = 5;
+    public void ResetLives()
+    {
+        lives = 5;
+    }
+    public void LoseLives()
+    {
+        lives--;
+    }
 }

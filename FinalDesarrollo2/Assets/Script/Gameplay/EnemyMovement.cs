@@ -53,6 +53,11 @@ public class EnemyMovement : MonoBehaviour
                 }
                 break;
             case sideOfSpawn.right:
+                if (transform.position.x + objectWidth < (screenBounds.x))
+                {
+                    newPos.x = -screenBounds.x + objectWidth;
+                    transform.position = newPos;
+                }
                 break;
             default:
                 break;
