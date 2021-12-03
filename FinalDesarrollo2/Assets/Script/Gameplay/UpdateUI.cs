@@ -19,6 +19,11 @@ public class UpdateUI : MonoBehaviour
         scoreText.text = "Score: " + gm.score.ToString();
     }
 
+    public float GetTimePassed()
+    {
+        return timePassed;
+    }
+
     void Update()
     {
         timePassed += Time.deltaTime;

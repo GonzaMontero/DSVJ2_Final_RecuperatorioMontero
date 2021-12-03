@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class PlayerCollisionManager : MonoBehaviour
 {
     [SerializeField] GameObject winUI;
     [SerializeField] GameObject loseUI;
+
+    [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] TextMeshProUGUI scoreText;
 
     private Vector3 startPos;
     private GameManager gm;
@@ -28,15 +32,19 @@ public class PlayerCollisionManager : MonoBehaviour
             gm.LoseLives();
             if (gm.lives <= 0)
             {
+                gm.level = 0;
+                gm.ResetLives();
                 loseUI.SetActive(true);
                 Time.timeScale = 0;
             }            
             UIController.GetComponent<UpdateUI>().ReUpdateUI();
         }
         else if(collision.transform.tag=="End Of Level")
-        {
+        {            
             gm.BeatLevel();
             winUI.SetActive(true);
+            timeText.text = "Time Taken: " + UIController.GetComponent<UpdateUI>().GetTimePassed().ToString("F2");
+            scoreText.text = "Score: " + gm.score.ToString();
             Time.timeScale = 0;
             gm.IncreaseScore(100);           
         }
