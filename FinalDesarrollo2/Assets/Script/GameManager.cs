@@ -6,6 +6,7 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     public void BeatLevel()
     {
         level++;
+        score += (100 * lives);
     }
     public int GetLevel()
     {
