@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - End Of Level
   - UI
+  - Win UI
+  - Lose UI
   layers:
   - Default
   - TransparentFX

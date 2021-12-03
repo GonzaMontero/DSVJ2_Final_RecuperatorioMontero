@@ -12,6 +12,7 @@ public class SceneLoader : MonobehaviourSingleton<SceneLoader>
 
     public void StartLevel()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Loading Bar");
     }
 

@@ -3,6 +3,9 @@
 [RequireComponent(typeof(BoxCollider2D))]
 public class PlayerCollisionManager : MonoBehaviour
 {
+    [SerializeField] GameObject winUI;
+    [SerializeField] GameObject loseUI;
+
     private Vector3 startPos;
     private GameManager gm;
     private SceneLoader loader;
@@ -13,7 +16,8 @@ public class PlayerCollisionManager : MonoBehaviour
         gm = GameManager.Get();
         loader = SceneLoader.Get();
         UIController = GameObject.FindGameObjectWithTag("UI");
-        startPos = transform.position;    
+        startPos = transform.position;
+        Time.timeScale = 1;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -26,14 +30,17 @@ public class PlayerCollisionManager : MonoBehaviour
             gm.LoseLives();
             if (gm.lives <= 0)
             {
-                loader.GoToMenu();
-            }
+                loseUI.SetActive(true);
+                Time.timeScale = 0;
+            }            
             UIController.GetComponent<UpdateUI>().ReUpdateUI();
         }
         else if(collision.transform.tag=="End Of Level")
         {
-            gm.IncreaseScore(100);
             gm.BeatLevel();
+            winUI.SetActive(true);
+            Time.timeScale = 0;
+            gm.IncreaseScore(100);           
         }
     }
 }

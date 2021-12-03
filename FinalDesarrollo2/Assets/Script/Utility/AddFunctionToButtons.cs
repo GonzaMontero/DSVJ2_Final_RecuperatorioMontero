@@ -8,6 +8,7 @@ public class AddFunctionToButtons : MonoBehaviour
     [SerializeField] Button creditsButton;
     [SerializeField] Button goToMenuButton;
     [SerializeField] Button exitGameButton;
+    [SerializeField] Button restartButton;
 
     SceneLoader sm;
 
@@ -29,6 +30,13 @@ public class AddFunctionToButtons : MonoBehaviour
         if (exitGameButton != null)
         {
             exitGameButton.onClick.AddListener(delegate { sm.EndApplication(); });
+        }
+        if (restartButton != null)
+        {
+            GameManager gm = GameManager.Get();
+            gm.ResetLives();
+            gm.level = 1;
+            restartButton.onClick.AddListener(delegate { sm.StartLevel(); });
         }
         this.GetComponent<AddFunctionToButtons>().enabled = false;
     }
