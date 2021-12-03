@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        speedLowered = false;
     }
 
     void Update()
@@ -45,5 +46,24 @@ public class Player : MonoBehaviour
         Vector3 viewPos = transform.position;
         viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x + objectWidth, screenBounds.x * -1 - objectWidth);
         transform.position = viewPos;
+    }
+
+    private bool speedLowered;
+
+    public void LowerSpeed()
+    {
+        movementSpeed /= 2;
+        speedLowered = true;
+    }
+
+    public void ReturnSpeed()
+    {
+        movementSpeed *= 2;
+        speedLowered = false;
+    }
+
+    public bool GetSpeedLowered()
+    {
+        return speedLowered;
     }
 }

@@ -765,7 +765,7 @@ MonoBehaviour:
   loadScene: {fileID: 950398301}
   levelText: {fileID: 1531921451}
   loadCompleteText: {fileID: 241544042}
-  speed: 10
+  speed: 30
 --- !u!1 &1531921451
 GameObject:
   m_ObjectHideFlags: 0
