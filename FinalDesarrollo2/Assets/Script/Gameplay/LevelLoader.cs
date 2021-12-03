@@ -59,6 +59,8 @@ public class LevelLoader : MonoBehaviour
                         SceneManager.LoadScene("Level 3");
                         break;
                     default:
+                        gm.level = 1;
+                        SceneManager.LoadScene("Level 1");
                         break;
                 }
             }
