@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         endBlocker = GameObject.FindGameObjectWithTag("End Blocker");
         if (GameManager.Get().isSmoothMode)
         {
-            transform.localScale = new Vector3(0.75f, 0.75f, 1);
+            transform.localScale = new Vector3(0.5f, 0.5f, 1);
         }
     }
 
