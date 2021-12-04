@@ -2,7 +2,13 @@
 
 public class GameManager : MonobehaviourSingleton<GameManager>
 {
-    public int level = 1; 
+    public int level = 1;
+
+    private void Start()
+    {
+        LoadManager<int>.SaveDataToFile(score, Application.persistentDataPath + "Saved Data.bat");
+    }
+
     public void BeatLevel()
     {
         level++;

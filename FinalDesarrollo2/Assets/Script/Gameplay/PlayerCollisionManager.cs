@@ -46,8 +46,9 @@ public class PlayerCollisionManager : MonoBehaviour
             winUI.SetActive(true);
             timeText.text = "Time Taken: " + UIController.GetComponent<UpdateUI>().GetTimePassed().ToString("F2");
             scoreText.text = "Score: " + gm.score.ToString();
-            Time.timeScale = 0;
-            gm.IncreaseScore(100);           
+            LoadManager<int>.SaveDataToFile(gm.GetScore(), Application.persistentDataPath + "Saved Data.bat");
+            gm.score = 0;
+            Time.timeScale = 0;          
         }
     }
 }

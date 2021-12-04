@@ -6,7 +6,8 @@ public class FadeEnemy : MonoBehaviour
     [SerializeField] GameObject[] go;
     private void Start()
     {
-        StartCoroutine(PhaseEnemy());
+        if (GameManager.Get().isSmoothMode)
+            StartCoroutine(PhaseEnemy());
     }
 
 

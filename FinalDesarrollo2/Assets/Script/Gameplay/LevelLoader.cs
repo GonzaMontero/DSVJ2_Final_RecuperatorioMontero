@@ -40,6 +40,7 @@ public class LevelLoader : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                gm.score = LoadManager<int>.LoadDataFromFile( Application.persistentDataPath + "Saved Data.bat");
                 switch (gm.level)
                 {
                     case 1:
