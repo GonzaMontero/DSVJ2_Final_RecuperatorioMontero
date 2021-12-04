@@ -4671,6 +4671,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: End Blocker
       objectReference: {fileID: 0}
+    - target: {fileID: 5457332478574159436, guid: 91596abb663cfa44e87824b5f67bf18f,
+        type: 3}
+      propertyPath: m_TagString
+      value: End Blocker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457332478574159436, guid: 91596abb663cfa44e87824b5f67bf18f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5457332478574159437, guid: 91596abb663cfa44e87824b5f67bf18f,
         type: 3}
       propertyPath: m_RootOrder

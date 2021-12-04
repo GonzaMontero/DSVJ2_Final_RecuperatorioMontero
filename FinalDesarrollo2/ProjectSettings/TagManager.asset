@@ -11,6 +11,7 @@ TagManager:
   - Win UI
   - Lose UI
   - Slime
+  - End Blocker
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float casualMovementSpeed;
     [SerializeField] float smoothMovementSpeed;
+    private GameObject endBlocker;
     private Vector2 screenBounds;
     private float objectWidth;
     private Vector3 target;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
         speedLowered = false;
         isMoving = false;
+        endBlocker = GameObject.FindGameObjectWithTag("End Blocker");
         if (GameManager.Get().isSmoothMode)
         {
             transform.localScale = new Vector3(0.75f, 0.75f, 1);
@@ -35,10 +37,13 @@ public class Player : MonoBehaviour
                 currentPos.x += (Input.GetAxisRaw("Horizontal") * Time.deltaTime) * smoothMovementSpeed;
                 transform.position = currentPos;
             }
-            if (Input.GetKey(KeyCode.S)){
+            if (Input.GetKey(KeyCode.S)) {
                 Vector2 currentPos = transform.position;
-                currentPos.y += (Input.GetAxisRaw("Vertical") * Time.deltaTime) * smoothMovementSpeed;
-                transform.position = currentPos;
+                if (currentPos.y > endBlocker.transform.position.y + endBlocker.GetComponent<SpriteRenderer>().bounds.size.y)
+                {
+                    currentPos.y += (Input.GetAxisRaw("Vertical") * Time.deltaTime) * smoothMovementSpeed;
+                    transform.position = currentPos;
+                }
             }
             if (Input.GetKey(KeyCode.D)){
                 Vector2 currentPos = transform.position;
@@ -67,6 +72,11 @@ public class Player : MonoBehaviour
                     target = transform.position;
                     target.y -= 1f;
                     isMoving = true;
+                    if (target.y == endBlocker.transform.position.y)
+                    {
+                        target.y = transform.position.y;
+                        isMoving = false;
+                    }
                 }
                 if (Input.GetKeyUp(KeyCode.D))
                 {
