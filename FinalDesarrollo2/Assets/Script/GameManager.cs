@@ -32,4 +32,17 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     {
         lives--;
     }
+
+    public bool isSmoothMode = false;
+    public void StartSmoothMode()
+    {
+        if (isSmoothMode)
+        {
+            isSmoothMode = false;
+        }
+        else
+        {
+            isSmoothMode = true;
+        }
+    }
 }

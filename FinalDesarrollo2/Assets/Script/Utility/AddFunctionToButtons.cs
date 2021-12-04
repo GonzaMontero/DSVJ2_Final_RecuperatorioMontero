@@ -9,6 +9,7 @@ public class AddFunctionToButtons : MonoBehaviour
     [SerializeField] Button goToMenuButton;
     [SerializeField] Button exitGameButton;
     [SerializeField] Button restartButton;
+    [SerializeField] Button switchDifficultyButton;
 
     void OnEnable()
     {
@@ -34,6 +35,10 @@ public class AddFunctionToButtons : MonoBehaviour
             gm.ResetLives();
             gm.level = 1;
             restartButton.onClick.AddListener(delegate { SceneLoader.StartLevel(); });
+        }
+        if (switchDifficultyButton != null)
+        {          
+            switchDifficultyButton.onClick.AddListener(delegate { GameManager.Get().StartSmoothMode(); ; });
         }
     }
 }
