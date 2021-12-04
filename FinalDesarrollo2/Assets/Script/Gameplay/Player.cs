@@ -2,7 +2,8 @@
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float movementSpeed;
+    [SerializeField] float casualMovementSpeed;
+    [SerializeField] float smoothMovementSpeed;
     private Vector2 screenBounds;
     private float objectWidth;
     private Vector3 target;
@@ -18,53 +19,67 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!isMoving)
+        if (GameManager.Get().isSmoothMode)
         {
-            if (Input.GetKeyUp(KeyCode.W))
-            {
-                target = transform.position;
-                target.y += 1f;
-                isMoving = true;
-                //Vector2 currentPos = transform.position;
-                //currentPos.y += (Input.GetAxisRaw("Vertical") * Time.deltaTime) * movementSpeed;
-                //transform.position = currentPos;
+            if (Input.GetKey(KeyCode.W)){
+                Vector2 currentPos = transform.position;
+                currentPos.y += (Input.GetAxisRaw("Vertical") * Time.deltaTime) * smoothMovementSpeed;
+                transform.position = currentPos;
             }
-            if (Input.GetKeyUp(KeyCode.A))
-            {
-                target = transform.position;
-                target.x -= 1f;
-                isMoving = true;
-                //Vector2 currentPos = transform.position;
-                //currentPos.x += (Input.GetAxisRaw("Horizontal") * Time.deltaTime) * movementSpeed;
-                //transform.position = currentPos;
+            if (Input.GetKey(KeyCode.A)){
+                Vector2 currentPos = transform.position;
+                currentPos.x += (Input.GetAxisRaw("Horizontal") * Time.deltaTime) * smoothMovementSpeed;
+                transform.position = currentPos;
             }
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                target = transform.position;
-                target.y -= 1f;
-                isMoving = true;
-                //Vector2 currentPos = transform.position;
-                //currentPos.y += (Input.GetAxisRaw("Vertical") * Time.deltaTime) * movementSpeed;
-                //transform.position = currentPos;
+            if (Input.GetKey(KeyCode.S)){
+                Vector2 currentPos = transform.position;
+                currentPos.y += (Input.GetAxisRaw("Vertical") * Time.deltaTime) * smoothMovementSpeed;
+                transform.position = currentPos;
             }
-            if (Input.GetKeyUp(KeyCode.D))
-            {
-                target = transform.position;
-                target.x += 1f;
-                isMoving = true;
-                //Vector2 currentPos = transform.position;
-                //currentPos.x += (Input.GetAxisRaw("Horizontal") * Time.deltaTime) * movementSpeed;
-                //transform.position = currentPos;
+            if (Input.GetKey(KeyCode.D)){
+                Vector2 currentPos = transform.position;
+                currentPos.x += (Input.GetAxisRaw("Horizontal") * Time.deltaTime) * smoothMovementSpeed;
+                transform.position = currentPos;
             }
         }
-        if (isMoving)
+        else
         {
-            transform.position = Vector3.Lerp(transform.position, target, movementSpeed * Time.deltaTime);
-            if (transform.position == target)
+            if (!isMoving)
             {
-                isMoving = false;
+                if (Input.GetKeyUp(KeyCode.W))
+                {
+                    target = transform.position;
+                    target.y += 1f;
+                    isMoving = true;
+                }
+                if (Input.GetKeyUp(KeyCode.A))
+                {
+                    target = transform.position;
+                    target.x -= 1f;
+                    isMoving = true;
+                }
+                if (Input.GetKeyUp(KeyCode.S))
+                {
+                    target = transform.position;
+                    target.y -= 1f;
+                    isMoving = true;
+                }
+                if (Input.GetKeyUp(KeyCode.D))
+                {
+                    target = transform.position;
+                    target.x += 1f;
+                    isMoving = true;
+                }
             }
-        }
+            if (isMoving)
+            {
+                transform.position = Vector3.Lerp(transform.position, target, casualMovementSpeed * Time.deltaTime);
+                if (transform.position == target)
+                {
+                    isMoving = false;
+                }
+            }
+        }      
     }
 
     void LateUpdate()
@@ -84,13 +99,13 @@ public class Player : MonoBehaviour
 
     public void LowerSpeed()
     {
-        movementSpeed /= 2;
+        casualMovementSpeed /= 2;
         speedLowered = true;
     }
 
     public void ReturnSpeed()
     {
-        movementSpeed *= 2;
+        casualMovementSpeed *= 2;
         speedLowered = false;
     }
 

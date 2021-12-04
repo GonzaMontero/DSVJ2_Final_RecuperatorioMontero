@@ -17,6 +17,8 @@ public class EnemyMovement : MonoBehaviour
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        if (GameManager.Get().isSmoothMode)
+            enemySpeed *= 1.5f;
     }
 
     void Update()

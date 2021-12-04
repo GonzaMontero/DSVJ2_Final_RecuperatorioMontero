@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a8eaf1692c8c145a8379341bbb7af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 30
+  casualMovementSpeed: 50
+  smoothMovementSpeed: 3
 --- !u!61 &5247709917460608205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,6 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winUI: {fileID: 0}
   loseUI: {fileID: 0}
+  timeText: {fileID: 0}
+  scoreText: {fileID: 0}
 --- !u!50 &4037282238564838367
 Rigidbody2D:
   serializedVersion: 4
