@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
         speedLowered = false;
         isMoving = false;
+        if (GameManager.Get().isSmoothMode)
+        {
+            transform.localScale = new Vector3(0.75f, 0.75f, 1);
+        }
     }
 
     void Update()

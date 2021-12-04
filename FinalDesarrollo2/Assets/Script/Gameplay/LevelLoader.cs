@@ -30,21 +30,8 @@ public class LevelLoader : MonoBehaviour
             secretText.SetActive(true);
         }
         text.text = "Level: " + gm.level.ToString();
-        switch (gm.level)
-        {
-            case 1:
-                StartCoroutine(LoadAsync());
-                break;
-            case 2:
-                StartCoroutine(LoadAsync());
-                break;
-            case 3:
-                StartCoroutine(LoadAsync());
-                break;
-            default:
-                break;
-        }
 
+        StartCoroutine(LoadAsync());
     }
 
     void Update()
