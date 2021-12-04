@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private GameObject endBlocker;
     private Vector2 screenBounds;
     private float objectWidth;
+    private float objectHeight;
     private Vector3 target;
     bool isMoving;
 
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        objectHeight= transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
         speedLowered = false;
         isMoving = false;
         endBlocker = GameObject.FindGameObjectWithTag("End Blocker");
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.S)) {
                 Vector2 currentPos = transform.position;
-                if (currentPos.y > endBlocker.transform.position.y + endBlocker.GetComponent<SpriteRenderer>().bounds.size.y / 2)
+                if (currentPos.y + objectHeight > endBlocker.transform.position.y + endBlocker.GetComponent<SpriteRenderer>().bounds.size.y)
                 {
                     currentPos.y += (Input.GetAxisRaw("Vertical") * Time.deltaTime) * smoothMovementSpeed;
                     transform.position = currentPos;
