@@ -2,41 +2,54 @@
 
 public class GameManager : MonobehaviourSingleton<GameManager>
 {
-    public int level = 1;
+    public class GameData
+    {
+        public int level = 1;
+        public int score = 0;
+        public int lives = 5;
+    }
+
+    public GameData data;
 
     private void Start()
     {
-        LoadManager<int>.SaveDataToFile(score, Application.persistentDataPath + "Saved Data.bat");
+        data = LoadManager<GameData>.LoadDataFromFile(Application.persistentDataPath + "Saved Data.bat");
+    }
+
+    private void OnDestroy()
+    {
+        if (this == GameManager.Get())
+        {
+            LoadManager<GameManager.GameData>.SaveDataToFile(data, Application.persistentDataPath + "Saved Data.bat");
+        }        
     }
 
     public void BeatLevel()
     {
-        level++;
-        score += (100 * lives);
+        data.level++;
+        data.score += (50 * data.level);
     }
     public int GetLevel()
     {
-        return level;
+        return data.level;
     }
-
-    public int score = 0;
+    
     public void IncreaseScore(int increase)
     {
-        score += increase;
+        data.score += increase;
     }
     public int GetScore()
     {
-        return score;
+        return data.score;
     }
-
-    public int lives = 5;
+    
     public void ResetLives()
     {
-        lives = 5;
+        data.lives = 5;
     }
     public void LoseLives()
     {
-        lives--;
+        data.lives--;
     }
 
     public bool isSmoothMode = false;

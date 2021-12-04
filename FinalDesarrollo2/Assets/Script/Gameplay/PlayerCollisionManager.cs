@@ -31,9 +31,9 @@ public class PlayerCollisionManager : MonoBehaviour
             transform.rotation = Quaternion.identity;
             Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 4, Camera.main.transform.position.z);
             gm.LoseLives();
-            if (gm.lives <= 0)
+            if (gm.data.lives <= 0)
             {
-                gm.level = 0;
+                gm.data.level = 0;
                 gm.ResetLives();
                 loseUI.SetActive(true);
                 Time.timeScale = 0;
@@ -45,10 +45,14 @@ public class PlayerCollisionManager : MonoBehaviour
             gm.BeatLevel();
             winUI.SetActive(true);
             timeText.text = "Time Taken: " + UIController.GetComponent<UpdateUI>().GetTimePassed().ToString("F2");
-            scoreText.text = "Score: " + gm.score.ToString();
-            LoadManager<int>.SaveDataToFile(gm.GetScore(), Application.persistentDataPath + "Saved Data.bat");
-            gm.score = 0;
+            scoreText.text = "Score: " + gm.data.score.ToString();
             Time.timeScale = 0;          
         }
+    }
+
+    private void OnDestroy()
+    {
+        LoadManager<GameManager.GameData>.SaveDataToFile(gm.data, Application.persistentDataPath + "Saved Data.bat");
+        gm.data.score = 0;
     }
 }

@@ -33,7 +33,7 @@ public class AddFunctionToButtons : MonoBehaviour
         {
             GameManager gm = GameManager.Get();
             gm.ResetLives();
-            gm.level = 1;
+            gm.data.level = 1;
             restartButton.onClick.AddListener(delegate { SceneLoader.StartLevel(); });
         }
         if (switchDifficultyButton != null)

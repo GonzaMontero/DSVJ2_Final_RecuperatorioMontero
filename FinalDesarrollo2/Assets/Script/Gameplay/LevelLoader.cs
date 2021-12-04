@@ -23,13 +23,15 @@ public class LevelLoader : MonoBehaviour
         sl = loadScene.GetComponent<Slider>();
         text = levelText.GetComponent<TextMeshProUGUI>();
 
+        gm.data = LoadManager<GameManager.GameData>.LoadDataFromFile(Application.persistentDataPath + "Saved Data.bat");
+
         operation = 0;
-        if (gm.level > 3)
+        if (gm.data.level > 3)
         {
-            gm.level = 1;
+            gm.data.level = 1;
             secretText.SetActive(true);
         }
-        text.text = "Level: " + gm.level.ToString();
+        text.text = "Level: " + gm.data.level.ToString();
 
         StartCoroutine(LoadAsync());
     }
@@ -40,8 +42,7 @@ public class LevelLoader : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                gm.score = LoadManager<int>.LoadDataFromFile( Application.persistentDataPath + "Saved Data.bat");
-                switch (gm.level)
+                switch (gm.data.level)
                 {
                     case 1:
                         SceneManager.LoadScene("Level 1");
@@ -53,7 +54,7 @@ public class LevelLoader : MonoBehaviour
                         SceneManager.LoadScene("Level 3");
                         break;
                     default:
-                        gm.level = 1;
+                        gm.data.level = 1;
                         SceneManager.LoadScene("Level 1");
                         break;
                 }

@@ -15,8 +15,8 @@ public class UpdateUI : MonoBehaviour
         timePassed = 0;
         gm = GameManager.Get();
 
-        livesText.text = "Lives: " + gm.lives.ToString();
-        scoreText.text = "Score: " + gm.score.ToString();
+        livesText.text = "Lives: " + gm.data.lives.ToString();
+        scoreText.text = "Score: " + gm.data.score.ToString();
     }
 
     public float GetTimePassed()
@@ -32,7 +32,7 @@ public class UpdateUI : MonoBehaviour
 
     public void ReUpdateUI()
     {
-        livesText.text = "Lives: " + gm.lives.ToString();
-        scoreText.text = "Score: " + gm.score.ToString();
+        livesText.text = "Lives: " + gm.data.lives.ToString();
+        scoreText.text = "Score: " + gm.data.score.ToString();
     }
 }
