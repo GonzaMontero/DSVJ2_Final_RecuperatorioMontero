@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.S)) {
                 Vector2 currentPos = transform.position;
-                if (currentPos.y > endBlocker.transform.position.y + endBlocker.GetComponent<SpriteRenderer>().bounds.size.y)
+                if (currentPos.y > endBlocker.transform.position.y + endBlocker.GetComponent<SpriteRenderer>().bounds.size.y / 2)
                 {
                     currentPos.y += (Input.GetAxisRaw("Vertical") * Time.deltaTime) * smoothMovementSpeed;
                     transform.position = currentPos;
