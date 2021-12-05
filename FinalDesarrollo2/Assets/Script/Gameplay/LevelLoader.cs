@@ -23,7 +23,15 @@ public class LevelLoader : MonoBehaviour
         sl = loadScene.GetComponent<Slider>();
         text = levelText.GetComponent<TextMeshProUGUI>();
 
-        gm.data = LoadManager<GameManager.GameData>.LoadDataFromFile(Application.persistentDataPath + "Saved Data.bat");
+        GameManager.GameData temp = new GameManager.GameData();
+        string jsonData;
+        jsonData = LoadManager<string>.LoadDataFromFile(Application.persistentDataPath + "/Saved Data.bin");
+        JsonUtility.FromJsonOverwrite(jsonData, temp);
+        if (temp.level > 0)
+        {
+            gm.data = temp;
+        }
+
 
         operation = 0;
         if (gm.data.level > 3)

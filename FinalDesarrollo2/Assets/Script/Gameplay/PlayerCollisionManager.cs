@@ -44,7 +44,7 @@ public class PlayerCollisionManager : MonoBehaviour
         {            
             gm.BeatLevel();
             winUI.SetActive(true);
-            timeText.text = "Time Taken: " + UIController.GetComponent<UpdateUI>().GetTimePassed().ToString("F2");
+            timeText.text = "Time Taken: " + UIController.GetComponent<UpdateUI>().GetTimePassed().ToString("F1");
             scoreText.text = "Score: " + gm.data.score.ToString();
             Time.timeScale = 0;          
         }
@@ -52,7 +52,9 @@ public class PlayerCollisionManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        LoadManager<GameManager.GameData>.SaveDataToFile(gm.data, Application.persistentDataPath + "Saved Data.bat");
+        string jsonData;
+        jsonData = JsonUtility.ToJson(gm.data);
+        LoadManager<string>.SaveDataToFile(jsonData, Application.persistentDataPath + "/Saved Data.bin");
         gm.data.score = 0;
     }
 }

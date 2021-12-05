@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+
 
 public class GameManager : MonobehaviourSingleton<GameManager>
 {
+    [Serializable]
     public class GameData
     {
-        public int level = 1;
+        public int level;
         public int score = 0;
         public int lives = 5;
     }
@@ -13,14 +16,24 @@ public class GameManager : MonobehaviourSingleton<GameManager>
 
     private void Start()
     {
-        data = LoadManager<GameData>.LoadDataFromFile(Application.persistentDataPath + "Saved Data.bat");
+        GameData temp = new GameData();
+        string jsonData;
+        jsonData = LoadManager<string>.LoadDataFromFile(Application.persistentDataPath + "/Saved Data.bin");
+        JsonUtility.FromJsonOverwrite(jsonData, temp);
+        if (temp.level < 1)
+        {
+            return;
+        }
+        data = temp;
     }
 
     private void OnDestroy()
     {
         if (this == GameManager.Get())
         {
-            LoadManager<GameManager.GameData>.SaveDataToFile(data, Application.persistentDataPath + "Saved Data.bat");
+            string jsonData;
+            jsonData = JsonUtility.ToJson(data);
+            LoadManager<string>.SaveDataToFile(jsonData, Application.persistentDataPath + "/Saved Data.bin");
         }        
     }
 

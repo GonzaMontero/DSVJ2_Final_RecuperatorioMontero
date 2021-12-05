@@ -757,9 +757,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac6e6e671f96d04a98403d08a6785e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  score: 0
-  lives: 5
+  data:
+    level: 1
+    score: 0
+    lives: 5
+  isSmoothMode: 0
 --- !u!4 &996654984
 Transform:
   m_ObjectHideFlags: 0
@@ -1583,3 +1585,4 @@ MonoBehaviour:
   goToMenuButton: {fileID: 0}
   exitGameButton: {fileID: 559200678}
   restartButton: {fileID: 0}
+  switchDifficultyButton: {fileID: 0}
