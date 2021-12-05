@@ -33,7 +33,7 @@ public class PlayerCollisionManager : MonoBehaviour
             gm.LoseLives();
             if (gm.data.lives <= 0)
             {
-                gm.data.level = 0;
+                gm.data.level = 1;
                 gm.ResetLives();
                 loseUI.SetActive(true);
                 Time.timeScale = 0;
