@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     private float objectWidth;
     private float objectHeight;
     private Vector3 target;
-    bool isMoving;
 
     private void Start()
     {
@@ -17,85 +16,14 @@ public class Player : MonoBehaviour
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
         objectHeight= transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
         speedLowered = false;
-        isMoving = false;
         endBlocker = GameObject.FindGameObjectWithTag("End Blocker");
-        if (GameManager.Get().isSmoothMode)
-        {
-            transform.localScale = new Vector3(0.5f, 0.5f, 1);
-        }
+        transform.localScale = new Vector3(0.5f, 0.5f, 1);
     }
 
     void Update()
     {
-        if (GameManager.Get().isSmoothMode)
-        {
-            if (Input.GetKey(KeyCode.W)){
-                Vector2 currentPos = transform.position;
-                currentPos.y += (Input.GetAxisRaw("Vertical") * Time.deltaTime) * smoothMovementSpeed;
-                transform.position = currentPos;
-            }
-            if (Input.GetKey(KeyCode.A)){
-                Vector2 currentPos = transform.position;
-                currentPos.x += (Input.GetAxisRaw("Horizontal") * Time.deltaTime) * smoothMovementSpeed;
-                transform.position = currentPos;
-            }
-            if (Input.GetKey(KeyCode.S)) {
-                Vector2 currentPos = transform.position;
-                if (currentPos.y + objectHeight > endBlocker.transform.position.y + endBlocker.GetComponent<SpriteRenderer>().bounds.size.y)
-                {
-                    currentPos.y += (Input.GetAxisRaw("Vertical") * Time.deltaTime) * smoothMovementSpeed;
-                    transform.position = currentPos;
-                }
-            }
-            if (Input.GetKey(KeyCode.D)){
-                Vector2 currentPos = transform.position;
-                currentPos.x += (Input.GetAxisRaw("Horizontal") * Time.deltaTime) * smoothMovementSpeed;
-                transform.position = currentPos;
-            }
-        }
-        else
-        {
-            if (!isMoving)
-            {
-                if (Input.GetKeyUp(KeyCode.W))
-                {
-                    target = transform.position;
-                    target.y += 1f;
-                    isMoving = true;
-                }
-                if (Input.GetKeyUp(KeyCode.A))
-                {
-                    target = transform.position;
-                    target.x -= 1f;
-                    isMoving = true;
-                }
-                if (Input.GetKeyUp(KeyCode.S))
-                {
-                    target = transform.position;
-                    target.y -= 1f;
-                    isMoving = true;
-                    if (target.y == endBlocker.transform.position.y)
-                    {
-                        target.y = transform.position.y;
-                        isMoving = false;
-                    }
-                }
-                if (Input.GetKeyUp(KeyCode.D))
-                {
-                    target = transform.position;
-                    target.x += 1f;
-                    isMoving = true;
-                }
-            }
-            if (isMoving)
-            {
-                transform.position = Vector3.Lerp(transform.position, target, casualMovementSpeed * Time.deltaTime);
-                if (transform.position == target)
-                {
-                    isMoving = false;
-                }
-            }
-        }      
+        Vector3 newPos = transform.position + new Vector3(Input.GetAxisRaw("Horizontal") * Time.deltaTime * smoothMovementSpeed, Input.GetAxisRaw("Vertical") * Time.deltaTime * smoothMovementSpeed, 0);
+        transform.position = newPos;  
     }
 
     void LateUpdate()
@@ -106,12 +34,6 @@ public class Player : MonoBehaviour
     }
 
     private bool speedLowered;
-
-    public void ResetTarget()
-    {
-        target = transform.position;
-        isMoving = false;
-    }
 
     public void LowerSpeed()
     {

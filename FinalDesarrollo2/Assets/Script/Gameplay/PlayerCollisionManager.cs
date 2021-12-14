@@ -27,7 +27,6 @@ public class PlayerCollisionManager : MonoBehaviour
         if (collision.transform.tag == "Enemy")
         {
             transform.position = startPos;
-            transform.GetComponent<Player>().ResetTarget();
             transform.rotation = Quaternion.identity;
             Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 4, Camera.main.transform.position.z);
             gm.LoseLives();
